@@ -180,17 +180,12 @@ export default function InteractiveAvatar() {
 
     // Fullscreen handler
     async function handleFullscreen() {
-        interface HTMLVideoElement {
-            webkitRequestFullscreen?: () => Promise<void>;
-            msRequestFullscreen?: () => Promise<void>;
-        }
-        
         if (mediaStream.current.requestFullscreen) {
             await mediaStream.current.requestFullscreen();
-        } else if (mediaStream.current.webkitRequestFullscreen) { // Safari
-            await mediaStream.current.webkitRequestFullscreen();
-        } else if (mediaStream.current.msRequestFullscreen) { // IE11
-            await mediaStream.current.msRequestFullscreen();
+        } else if ('webkitRequestFullscreen' in mediaStream.current) { // Safari
+            await (mediaStream.current as any).webkitRequestFullscreen();
+        } else if ('msRequestFullscreen' in mediaStream.current) { // IE11
+            await (mediaStream.current as any).msRequestFullscreen();
         }
     }
 
