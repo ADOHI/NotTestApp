@@ -180,11 +180,11 @@ export default function InteractiveAvatar() {
 
     // Fullscreen handler
     async function handleFullscreen() {
-        if (mediaStream.current.requestFullscreen) {
+        if (mediaStream.current?.requestFullscreen) {
             await mediaStream.current.requestFullscreen();
-        } else if ('webkitRequestFullscreen' in mediaStream.current) { // Safari
+        } else if ('webkitRequestFullscreen' in (mediaStream.current ?? {})) { // Safari
             await (mediaStream.current as any).webkitRequestFullscreen();
-        } else if ('msRequestFullscreen' in mediaStream.current) { // IE11
+        } else if ('msRequestFullscreen' in (mediaStream.current ?? {})) { // IE11
             await (mediaStream.current as any).msRequestFullscreen();
         }
     }
