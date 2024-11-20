@@ -93,10 +93,11 @@ export default function InteractiveAvatar() {
                 avatarName: avatarId,
                 knowledgeId: knowledgeId, // Or use a custom `knowledgeBase`.
                 voice: {
-                    rate: 1.5, // 0.5 ~ 1.5
-                    emotion: VoiceEmotion.EXCITED,
+                    rate: 0.5, // 0.5 ~ 1.5
+                    emotion: VoiceEmotion.SERIOUS,
                 },
                 language: language,
+                disableIdleTimeout: true
             });
 
             setData(res);
